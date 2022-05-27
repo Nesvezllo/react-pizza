@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Item = ({title, price, sizes}) => {
+const Item = ({title, price, sizes, img}) => {
 
   // const [add, setAdd] = React.useState(false);
   const [itemCount, setItemCount] = React.useState(0);
@@ -15,7 +15,7 @@ const Item = ({title, price, sizes}) => {
     <div class="pizza-block">
       <img
         class="pizza-block__image"
-        src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+        src={img}
         alt="Pizza"
       />
   <h4 class="pizza-block__title">{title}</h4>

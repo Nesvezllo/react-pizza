@@ -1,0 +1,27 @@
+.wrapper {
+  position: relative;
+  right: 200px;
+
+
+  svg {
+    width: 18px;
+    height: 18px;
+    position: absolute; 
+    top: 8px;
+    opacity: 0.4;
+    left: 10px;
+  }
+
+  input {
+    padding: 6px 50px 6px 40px;
+    border: 2px solid rgba(128, 128, 128, 0.356);
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all .2s ease-in-out;
+
+    &:focus {
+      padding: 5px 100px 5px 40px;
+      border: 2px solid rgba(128, 128, 128, 0.616);
+    }
+  }
+}

@@ -7,47 +7,22 @@ import './scss/components/_all.scss'
 import * as axios from 'axios';
 
 import Header from './components/Header'
-import Categories from './components/Categories'
-import Item from './components/Item'
-import Sort from './components/Sort'
+import HomePage from './components/HomePage'
+import Cart from './components/Cart'
+
 import React,{ useEffect } from 'react';
+import { Routes, Route} from 'react-router-dom';
 
 
 function App() {
-
-  const [items, setItems] = React.useState([]);
-
-  useEffect(() => {
-    axios.get("https://628a811de5e5a9ad3225452e.mockapi.io/items").then((res) => {
-      setItems(res.data)
-    })
-  }, [])
-
+  const [searchValue, setSearchValue] = React.useState("");
   return (
     <div class="wrapper">
-      <Header />
-      <div class="content">
-        <div class="container">
-          <div class="content__top">
-          <Categories />
-          <Sort />
-          </div>
-          <h2 class="content__title">Все пиццы</h2>
-          <div class="content__items">
-              {items.map((item, index) => (
-                <Item 
-                  id={item.id} 
-                  img={item.imageUrl} 
-                  price={item.price}
-                  rating={item.rating}
-                  sizes={item.sizes}
-                  title={item.title}
-                  types={item.types} 
-                />
-              ))}
-          </div>
-        </div>
-      </div>
+        <Header searchValue={searchValue} setSearchValue={setSearchValue}/>
+        <Routes>
+          <Route path="/" element={<HomePage searchValue={searchValue} />} />
+          <Route path="/Cart" element={<Cart />} />
+        </Routes>
     </div>
   );
 }
