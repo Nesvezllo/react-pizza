@@ -6,13 +6,13 @@ const initialState = {
     ]
 }
 
-export const marketSlice = createSlice({
-  name: "marketSlice",
+export const filterSlice = createSlice({
+  name: "filter",
   initialState,
   reducers: {
 
   }
 })
 
-export const marketReducer = marketSlice.reducer;
-export const {} = marketSlice.actions;
+export const marketReducer = fileSlice.reducer;
+export const {} = filterSlice.actions;

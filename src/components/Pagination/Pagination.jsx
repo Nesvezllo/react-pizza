@@ -4,18 +4,17 @@ import React from 'react';
 
 import ReactPaginate from 'react-paginate';
 
-const Pagination = () => {
+const Pagination = ({onChangePage}) => {
   const [active, setActive] = React.useState(false)
   return (
     <ReactPaginate
-      className={active ? `${s.pagination} ${s.active}` : s.pagination}
-      onClick={() => setActive(true)}
+      className={s.pagination}
       breakLabel="..."
-      nextLabel="next >"
-      onPageChange={(e) => console.log(e)}
+      nextLabel=">"
+      onPageChange={(e) => onChangePage(e.selected + 1)}
       pageRangeDisplayed={5}
       pageCount={3}
-      previousLabel="< previous"
+      previousLabel="<"
       renderOnZeroPageCount={null}
     />
   )

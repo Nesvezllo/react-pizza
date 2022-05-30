@@ -13,6 +13,7 @@ const HomePage = ({searchValue, }) => {
   const [items, setItems] = React.useState([]);
   const [isLoading,setIsLoading] = React.useState(true) 
   const [categoryId, setCategoryId] = React.useState(0)
+  const [currentPage, setCurrentPage] = React.useState(1);
   const [sortId, setSortId] = React.useState({
     name: 'популярности',
     sort: 'rating', 
@@ -23,14 +24,14 @@ const HomePage = ({searchValue, }) => {
     const order = sortId.sort.includes('-') ? 'asd': 'desc';
     const sortBy = sortId.sort.replace('-', '');
     const category = categoryId > 0 ? `category=${categoryId}` : '';
-    axios.get(`https://628a811de5e5a9ad3225452e.mockapi.io/items?limit={8}&${category}&sortBy=${sortBy}&order=${order}`)
+    axios.get(`https://628a811de5e5a9ad3225452e.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}`)
       .then((res) => {
       setTimeout(() => {
         setItems(res.data) 
         setIsLoading(false);
-      }, 2000);
+      }, 1000);
     })
-  }, [categoryId, sortId])
+  }, [categoryId, sortId, currentPage])
 
 
   const pizzas = items
@@ -41,6 +42,11 @@ const HomePage = ({searchValue, }) => {
         return false;
       }
     })
+
+
+    const onChangePage = (num) => {
+      setCurrentPage(num)
+    }
 
 
   return (
@@ -65,7 +71,7 @@ const HomePage = ({searchValue, }) => {
           ))}
       </div>
     </div>
-    <Pagination />
+    <Pagination onChangePage={(e) => onChangePage(e)}/>
   </div>
   )
 }
