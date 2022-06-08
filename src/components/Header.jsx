@@ -1,23 +1,26 @@
 import pizza from '../components/assets/pizza.png';
 import { Link } from 'react-router-dom';
+import {useDispatch, useSelector} from "react-redux";
 
 import Search from './Search/Search'
 
 const Header = ({searchValue,setSearchValue}) => {
+  const {totalPrice, cartItems} = useSelector(state => state.cartReducer)
+  const totalCount = cartItems.reduce((sum, item) => sum + item.count, 0)
   return (
     <div class="header">
       <div class="container">
       <Link to={"/"} class="header__logo">
         <img width="38" src={pizza} alt="Pizza logo" />
         <div>
-          <h1>React Pizza</h1>
+          <h1>Pizza Time</h1>
           <p>Cамая вкусная пицца во вселенной</p>
         </div>
       </Link>
       <Search searchValue={searchValue} setSearchValue={setSearchValue}/>
       <div class="header__cart">
         <Link to={"/Cart"} class="button button--cart">
-          <span>520 ₽</span>
+          <span>{totalPrice} ₽</span>
           <div class="button__delimiter"></div>
           <svg
             width="18"
@@ -48,7 +51,7 @@ const Header = ({searchValue,setSearchValue}) => {
               stroke-linejoin="round"
             />
           </svg>
-          <span>3</span>
+          <span>{totalCount}</span>
         </Link>
       </div>
     </div>

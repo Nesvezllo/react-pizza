@@ -1,15 +1,30 @@
 import React from 'react';
+import {useDispatch, useSelector} from "react-redux";
+import {addToCart} from '../store/cartSlice'
 
-const Item = ({title, price, sizes, img}) => {
+const Item = ({title, price, sizes, img, item, id}) => {
 
-  // const [add, setAdd] = React.useState(false);
   const [itemCount, setItemCount] = React.useState(0);
   const [sizeCount, setSizeCount] = React.useState(0);
+  const [typeCount, setTypeCount] = React.useState(0);
+  const dispatch = useDispatch();
+  const cartItem = useSelector(state => state.cartReducer.cartItems.find(item => item.id == id))
+  const typeNames = ["Тонкое", "Традиционнное"]
+  
+  const addedCount = cartItem ? cartItem.count : 0;
 
-
-  const addCount = () => {
-    setItemCount(itemCount + 1)
+  const onClickAdd = () => {
+    const obj = {
+      id,
+      title,
+      price,
+      img,
+      type: typeNames[typeCount],
+      sizes: sizes[sizeCount],
+    }
+    dispatch(addToCart(obj))
   }
+
 
   return (
     <div class="pizza-block">
@@ -21,8 +36,11 @@ const Item = ({title, price, sizes, img}) => {
   <h4 class="pizza-block__title">{title}</h4>
   <div class="pizza-block__selector">
     <ul>
-      <li class="active">тонкое</li>
-      <li>традиционное</li>
+      {typeNames.map((name, index) => (
+        <li className={typeCount == index && "active"}
+        onClick={() => setTypeCount(index)}
+        >{name}</li>
+      ))}
     </ul>
     <ul>
       {sizes.map((size, index) => 
@@ -32,7 +50,7 @@ const Item = ({title, price, sizes, img}) => {
   </div>
   <div class="pizza-block__bottom">
     <div class="pizza-block__price">от {price} ₽</div>
-    <div class="button button--outline button--add" onClick={() => addCount()}>
+    <div class="button button--outline button--add" onClick={() => onClickAdd()}>
       <svg
         width="12"
         height="12"
@@ -46,7 +64,7 @@ const Item = ({title, price, sizes, img}) => {
         />
       </svg>
       <span>Добавить</span>
-      <i>{itemCount}</i>
+      {addedCount > 0 && <i>{addedCount}</i>}
     </div>
   </div>
 </div>

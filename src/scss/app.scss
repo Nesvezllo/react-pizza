@@ -47,6 +47,14 @@ body {
     }
   }
 
+  &__cartitems {
+    display: grid;
+    justify-items: center;
+
+  }
+
+  
+
   &__top {
     display: flex;
     align-items: center;
@@ -170,19 +178,20 @@ body {
       align-items: center;
       justify-content: space-between;
       width: 13%;
+      font-size: 25px;
+      
 
       &-minus {
         svg {
-          path:first-of-type {
-            display: none;
-          }
-        }
+          width: 0.7vw;
+         }
       }
 
       b {
         font-size: 22px;
       }
     }
+    
 
     &-price {
       display: flex;
@@ -208,17 +217,16 @@ body {
       }
 
       svg {
-        transform: rotate(45deg);
+        
 
         path {
-          fill: darken($color: $gray-line, $amount: 15);
+          fill: darken($color: $gray-line, $amount: 15) !important;
         }
       }
 
       .button {
         svg {
-          width: 11.5px;
-          height: 11.5px;
+          width: 0.7vw;
           position: relative;
         }
         &:hover,

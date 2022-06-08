@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import {marketReducer} from './marketSlice'
+import {filterReducer} from './filterSlice'
+import {cartReducer} from './cartSlice'
 
 
 const reducers = combineReducers({
-    marketReducer,
+    filterReducer,
+    cartReducer,
 })
 
 export const store = configureStore({

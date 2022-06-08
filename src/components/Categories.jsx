@@ -1,10 +1,9 @@
 import React from "react";
+import {useDispatch, useSelector} from "react-redux";
 
 const Categories = ({value, onClickCategory}) => {
 
   const categories = ["Все" , "Мясные" , "Вегетарианская", "Гриль", "Острые", "Закрытые"]
-  const [active, setActive] = React.useState(0)
-
 
   return (
     <div class="categories">
