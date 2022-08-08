@@ -50,7 +50,9 @@ body {
   &__cartitems {
     display: grid;
     justify-items: center;
-
+    svg {
+      height: 20px;
+    }
   }
 
   

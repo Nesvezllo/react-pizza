@@ -1,12 +1,19 @@
 import pizza from '../components/assets/pizza.png';
 import { Link } from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect } from 'react'
 
 import Search from './Search/Search'
 
 const Header = ({searchValue,setSearchValue}) => {
-  const {totalPrice, cartItems} = useSelector(state => state.cartReducer)
+  const { totalPrice, cartItems } = useSelector(state => state.cartReducer)
   const totalCount = cartItems.reduce((sum, item) => sum + item.count, 0)
+
+  useEffect(() => {
+    const json = JSON.stringify(cartItems);
+    localStorage.setItem("cart", json);
+  }, [cartItems])
+
   return (
     <div class="header">
       <div class="container">

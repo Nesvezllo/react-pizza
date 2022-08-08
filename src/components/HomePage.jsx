@@ -44,6 +44,7 @@ const HomePage = ({searchValue, }) => {
       setTimeout(() => {
         setItems(res.data) 
         setIsLoading(false);
+        console.log(res);
       }, 500);
     })
   }, [categoryId, sortValue, currentPage])
@@ -86,6 +87,7 @@ const HomePage = ({searchValue, }) => {
           {isLoading ? [...new Array(8)].map((_, index) => <Loader key={index}/>) 
             :pizzas.map((item, index) => (<Item 
               id={item.id} 
+              key={index}
               img={item.imageUrl} 
               price={item.price}
               rating={item.rating}

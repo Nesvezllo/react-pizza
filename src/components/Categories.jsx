@@ -8,8 +8,8 @@ const Categories = ({value, onClickCategory}) => {
   return (
     <div class="categories">
     <ul>
-      {categories.map((category, index) => (
-        <li className={value == index && "active"} onClick={() => onClickCategory(index)}>{category}</li>
+      {categories.map((category, i) => (
+        <li className={value == i && "active"} onClick={() => onClickCategory(i)}>{category}</li>
       ))}
     </ul>
   </div>

@@ -38,6 +38,7 @@ const Item = ({title, price, sizes, img, item, id}) => {
     <ul>
       {typeNames.map((name, index) => (
         <li className={typeCount == index && "active"}
+        key={index}
         onClick={() => setTypeCount(index)}
         >{name}</li>
       ))}
